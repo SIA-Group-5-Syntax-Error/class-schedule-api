@@ -1,20 +1,12 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Http;
 
 Route::get('/schedule', function () {
-    return response()->json([
-        [
-            "subject" => "System Integration Architecture",
-            "time" => "10:00 AM - 1:00 PM",
-            "day" => "Saturday",
-            "room" => "Room 305"
-        ],
-        [
-            "subject" => "Web System and Technologies",
-            "time" => "4:00 PM - 7:00 PM",
-            "day" => "Saturday",
-            "room" => "Room 302"
-        ]
-    ]);
+
+    $response = Http::get('https://69f34667bd2396bf530fa847.mockapi.io/schedule');
+
+    return response()->json($response->json());
+
 });
